@@ -23,14 +23,14 @@ namespace BlogApi.Controllers
         }
 
         // GET: api/BlogPosts
-        [HttpGet("GetPosts")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<BlogPost>>> GetBlogs()
         {
             return await _context.Blogs.ToListAsync();
         }
 
         // GET: api/BlogPosts/5
-        [HttpGet("GetPost{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<BlogPost>> GetBlogPost(int id)
         {
             var blogPost = await _context.Blogs.FindAsync(id);
@@ -45,7 +45,7 @@ namespace BlogApi.Controllers
 
         // PUT: api/BlogPosts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("EditPost{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutBlogPost(int id, BlogPost blogPost)
         {
             if (id != blogPost.Id)
@@ -76,7 +76,7 @@ namespace BlogApi.Controllers
 
         // POST: api/BlogPosts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("Create")]
+        [HttpPost]
         public async Task<ActionResult<BlogPost>> PostBlogPost(BlogPost blogPost)
         {
             blogPost.CreatedDate = DateTime.Now;
@@ -87,7 +87,7 @@ namespace BlogApi.Controllers
         }
 
         // DELETE: api/BlogPosts/5
-        [HttpDelete("DeletePost{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlogPost(int id)
         {
             var blogPost = await _context.Blogs.FindAsync(id);
